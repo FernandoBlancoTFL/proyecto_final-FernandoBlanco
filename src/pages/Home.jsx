@@ -7,6 +7,7 @@ import { ImageCollection } from '../components/ImageCollection'
 import { SearchBar } from '../components/SearchBar'
 import { NewsletterCard } from '../components/NewsletterCard'
 import { FilterMenuAccordion } from '../components/FilterMenuAccordion'
+import { PRODUCTS_URL } from '../constants/constants'
 import { Seo } from '../components/Seo'
 
 export function Home ({ filterURL, filterName, handleFilter }) {
@@ -48,9 +49,9 @@ export function Home ({ filterURL, filterName, handleFilter }) {
 
   const handleSearch = (query) => {
     if (!query.trim()) {
-      handleFilter('https://dummyjson.com/products', 'Nuestros Productos')
+      handleFilter(PRODUCTS_URL, 'Nuestros Productos')
     } else {
-      handleFilter(`https://dummyjson.com/products/search?q=${encodeURIComponent(query)}`, `Resultados para "${query}"`)
+      handleFilter(`${PRODUCTS_URL}/search?q=${encodeURIComponent(query)}`, `Resultados para "${query}"`)
     }
   }
 
@@ -103,7 +104,7 @@ export function Home ({ filterURL, filterName, handleFilter }) {
             <h2 className='mb-4' ref={titleRef}>{filterName}</h2>
             <div className='d-flex justify-content-between align-items-center gap-2 mb-3'>
               <Button
-                className='p-1 h-100 rounded-4'
+                className='p-1 h-100 rounded-4 shadow-sm'
                 variant={menuOpen ? 'primary' : 'light'}
                 onClick={toggleMenu}
                 style={{ minWidth: '110px' }}
@@ -117,7 +118,7 @@ export function Home ({ filterURL, filterName, handleFilter }) {
                     )}
 
               </Button>
-              <div className='p-2 px-3 rounded-4' style={{ width: '400px', backgroundColor: '#121212' }}>
+              <div className='p-2 px-3 rounded-4 shadow-sm' style={{ width: '400px', backgroundColor: '#121212' }}>
                 <SearchBar ref={searchRef} onSearch={handleSearch} />
               </div>
             </div>
